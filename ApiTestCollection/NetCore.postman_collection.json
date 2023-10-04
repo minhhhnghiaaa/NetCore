@@ -1,0 +1,572 @@
+{
+	"info": {
+		"_postman_id": "073337eb-3b8f-4960-b6dc-a0a180167580",
+		"name": "NetCore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13826526"
+	},
+	"item": [
+		{
+			"name": "Merchant",
+			"item": [
+				{
+					"name": "Get All Merchant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Merchant ID</th>\r",
+									"        <th>Full Name</th>\r",
+									"        <th>Bank Name</th>\r",
+									"        <th>Account Number</th>\r",
+									"        <th>Swift Code</th>\r",
+									"        <th>Balance</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response}}\r",
+									"        <tr>\r",
+									"            <td>{{merchantId}}</td>\r",
+									"            <td>{{fullName}}</td>\r",
+									"            <td>{{bankName}}</td>\r",
+									"            <td>{{accountNumber}}</td>\r",
+									"            <td>{{swiftCode}}</td>\r",
+									"            <td>{{balance}}</td>\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/{{mer}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mer}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Merchant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"string\",\r\n    \"bankName\": \"string\",\r\n    \"accountNumber\": \"string\",\r\n    \"swiftCode\": \"string\",\r\n    \"balance\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/{{mer}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mer}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Merchant Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Costco1\",\r\n    \"bankName\": \"Costco Bank1\",\r\n    \"accountNumber\": \"Costco01234567891\",\r\n    \"swiftCode\": \"CC1234561\",\r\n    \"balance\": 10000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mer}}",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mer}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"name\": \"Costco1\",\r\n    \"bankName\": \"Costco Bank1\",\r\n    \"accountNumber\": \"Costco01234567891\",\r\n    \"swiftCode\": \"CC1234561\",\r\n    \"balance\": 10000000,\r\n    \"members\": [],\r\n    \"id\": \"ad35dee5-c1d6-4cc1-996e-61c29d26d1e1\",\r\n    \"createdDate\": \"2023-09-20T09:06:17.6732943Z\",\r\n    \"updatedDate\": \"2023-09-20T09:06:17.6732944Z\",\r\n    \"status\": 1\r\n}"
+						},
+						{
+							"name": "Add Merchant Confilct",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Costco1\",\r\n    \"bankName\": \"Costco Bank1\",\r\n    \"accountNumber\": \"Costco01234567891\",\r\n    \"swiftCode\": \"CC1234561\",\r\n    \"balance\": 10000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mer}}",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mer}}"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.8\",\r\n    \"title\": \"Conflict\",\r\n    \"status\": 409,\r\n    \"traceId\": \"00-9b8017278c0bea66f89f2cab089c1333-5de82a95d0c3e11b-00\"\r\n}"
+						},
+						{
+							"name": "Add Merchant Fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Costco\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mer}}",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mer}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r\n    \"title\": \"One or more validation errors occurred.\",\r\n    \"status\": 400,\r\n    \"traceId\": \"00-5e0f2abb6747ef3694bdbf25d194bc70-6fddf30a0f98844f-00\",\r\n    \"errors\": {\r\n        \"BankName\": [\r\n            \"The BankName field is required.\"\r\n        ],\r\n        \"SwiftCode\": [\r\n            \"The SwiftCode field is required.\"\r\n        ],\r\n        \"AccountNumber\": [\r\n            \"The AccountNumber field is required.\"\r\n        ]\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Merchant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"merchantId\": \"6b21d4a1-9229-4587-bd8e-944746c7672f\",\r\n    \"name\": \"string2\",\r\n    \"bankName\": \"string2\",\r\n    \"accountNumber\": \"string2\",\r\n    \"swiftCode\": \"string2\",\r\n    \"balance\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/{{mer}}/6b21d4a1-9229-4587-bd8e-944746c7672f",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mer}}",
+								"6b21d4a1-9229-4587-bd8e-944746c7672f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Merchant Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"string2\",\r\n    \"bankName\": \"string2\",\r\n    \"accountNumber\": \"string2\",\r\n    \"swiftCode\": \"string2\",\r\n    \"balance\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mer}}/ad35dee5-c1d6-4cc1-996e-61c29d26d1e1",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mer}}",
+										"ad35dee5-c1d6-4cc1-996e-61c29d26d1e1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"name\": \"string2\",\r\n    \"bankName\": \"string2\",\r\n    \"accountNumber\": \"string2\",\r\n    \"swiftCode\": \"string2\",\r\n    \"balance\": 0,\r\n    \"members\": [],\r\n    \"id\": \"ad35dee5-c1d6-4cc1-996e-61c29d26d1e1\",\r\n    \"createdDate\": \"2023-09-20T09:09:52.1342248Z\",\r\n    \"updatedDate\": \"2023-09-20T09:09:52.1342258Z\",\r\n    \"status\": 0\r\n}"
+						},
+						{
+							"name": "Update Merchant Fail",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"string2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mer}}/ad35dee5-c1d6-4cc1-996e-61c29d26d1e1",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mer}}",
+										"ad35dee5-c1d6-4cc1-996e-61c29d26d1e1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r\n    \"title\": \"One or more validation errors occurred.\",\r\n    \"status\": 400,\r\n    \"traceId\": \"00-6a802ab36a1fdb82c1f17332e9a0cf2d-1acbbd0b57d0deab-00\",\r\n    \"errors\": {\r\n        \"BankName\": [\r\n            \"The BankName field is required.\"\r\n        ],\r\n        \"SwiftCode\": [\r\n            \"The SwiftCode field is required.\"\r\n        ],\r\n        \"AccountNumber\": [\r\n            \"The AccountNumber field is required.\"\r\n        ]\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Merchant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/{{mer}}/46cf8692-826b-4d34-a3bc-9b18e3284400",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mer}}",
+								"46cf8692-826b-4d34-a3bc-9b18e3284400"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Merchant",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mer}}/6b21d4a1-9229-4587-bd8e-944746c7672f",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mer}}",
+										"6b21d4a1-9229-4587-bd8e-944746c7672f"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Member",
+			"item": [
+				{
+					"name": "Get All Member in Merchant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/{{mem}}/523bdeb2-5daa-40a2-a1be-03ee327ede35",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mem}}",
+								"523bdeb2-5daa-40a2-a1be-03ee327ede35"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Member in Merchant",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5052/api/member/523bdeb2-5daa-40a2-a1be-03ee327ede35",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5052",
+									"path": [
+										"api",
+										"member",
+										"523bdeb2-5daa-40a2-a1be-03ee327ede35"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Add Member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"merchantId\": \"523bdeb2-5daa-40a2-a1be-03ee327ede35\",\r\n    \"name\": \"Walmart Member 3\",\r\n    \"address\": \"Walmart Address\",\r\n    \"age\": 10,\r\n    \"email\": \"Walmartemail3@email.com\",\r\n    \"phoneNumber\": \"01234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/{{mem}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mem}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Member",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"merchantId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"name\": \"string\",\r\n    \"address\": \"string\",\r\n    \"age\": 0,\r\n    \"email\": \"string\",\r\n    \"phoneNumber\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/{{mem}}",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mem}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Member",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"merchantId\": \"523bdeb2-5daa-40a2-a1be-03ee327ede35\",\r\n    \"name\": \"Walmart Member 3\",\r\n    \"address\": \"Walmart Address\",\r\n    \"age\": 30,\r\n    \"email\": \"Walmartemail2@email.com\",\r\n    \"phoneNumber\": \"01234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mem}}/7a2a7b7b-aa62-457e-94ac-b14d975d64b5",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mem}}",
+										"7a2a7b7b-aa62-457e-94ac-b14d975d64b5"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Member",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/{{mem}}/46cf8692-826b-4d34-a3bc-9b18e3284400",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"{{mem}}",
+								"46cf8692-826b-4d34-a3bc-9b18e3284400"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Member",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/{{mem}}/7a2a7b7b-aa62-457e-94ac-b14d975d64b5",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"{{mem}}",
+										"7a2a7b7b-aa62-457e-94ac-b14d975d64b5"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

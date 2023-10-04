@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="hxgioxnu@floppy.db.elephantsql.com" uuid="3d147ca9-0882-47a1-9d85-3c27d0dd0399">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://floppy.db.elephantsql.com:5432/hxgioxnu?password=vgW-sGMKkLOHbGFJ2V2D-2twxnAP6KQL&amp;user=hxgioxnu</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
